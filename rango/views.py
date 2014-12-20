@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+#from django.http import HttpResponse
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -13,4 +13,4 @@ def index(request):
     return render(request, 'rango/index.html', context_dict)
 
 def about(request):
-    return HttpResponse("This is the About page  <br/> <a href='/rango/'>Index</a>")
+    return render(request,'rango/about.html')

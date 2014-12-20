@@ -22,6 +22,9 @@ SECRET_KEY = 'rnaf736an9u=it&3hzr@gg=e(^m6o&ld4=2!_2u6@+o-^vu7+b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 #STATIC_URL = '/static/'
