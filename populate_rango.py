@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','tango_with_django_project.settin
 import django
 django.setup()
 
-from rango.models import import Category, Page
+from rango.models import Category, Page
 
 def populate():
     python_cat = add_cat('Python')
@@ -52,11 +52,11 @@ def populate():
     
 def add_page(cat,title,url,views=0):
     p = Page.objects.get_or_create(category=cat,title=title,url=url,views=views)[0]
-    return pass
+    return p
     
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
-    return class
+def add_cat(name, views=0, likes=0):
+    c = Category.objects.get_or_create(name=name, views=views, likes = likes)[0]
+    return c
     
 #Start execution here!
 if __name__ == '__main__':

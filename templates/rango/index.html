@@ -3,16 +3,51 @@
 {% load staticfiles %} <!--  New line -->
 
 <html>
-
 	<head>
 		<title>Rango</title>
 	</head>
 	
 	<body>
-		<h1>Rango says...</h1>
-		hello world! <strong>{{ boldmessage  }}</strong><br />
-		<a href="/rango/about/">About</a><br />
 		<img src="{% static "images/chameleon.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
+		<h1>Rango says...hello world!</h1>
+		
+		<h2><u>Categories</u></h2>
+		{% if categories %}
+			<ul>
+				{% for category in categories %}
+				<li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no categories present.</strong>
+		{% endif %}
+
+		<h2><u>Top 5 Pages</u></h2>
+		{% if pages %}
+			<table style = "width:75%" border="2">
+			<!-- Add the headers -->
+			<tr strong>
+				<td><strong>Title</strong></td>
+				<td><strong>URL</strong></td>
+				<td><strong>Views</strong></td>
+			</tr>
+
+			{% for page in pages%}
+				<tr>
+					<td> {{page.title}} </td>
+					<td><a href= {{page.url}}>{{page.url}}</a> </td>
+					<td> {{page.views}} </td>
+				</tr>	
+			{% endfor %}	
+		{% else %}
+			<strong>There are no categories present.</strong>
+		{% endif %}
+		</table>
+		
+		<br/>
+		<br/>
+		<a href="/rango/about/">About</a><br />
+		<a href="/rango/add_category/">Add a New Category</a><br />
 	
 	</body>
 
