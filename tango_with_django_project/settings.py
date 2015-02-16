@@ -82,6 +82,8 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
+LOGIN_URL = '/rango/login/'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
