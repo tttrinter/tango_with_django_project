@@ -1,46 +1,70 @@
-{% extends 'rango/base.html' %}
+{% extends 'base.html' %}
 
 {% load staticfiles %}
 
-{% block title %}{{ category_name }}{% endblock %}
+{% block title %}Index{% endblock %}
 
 {% block body_block %}
 
-		<img src="{% static "images/chameleon.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
-		<h1>Rango says...hello world!</h1>
-		
-		<h2><u>Categories</u></h2>
-		{% if categories %}
-			<ul>
-				{% for category in categories %}
-				    <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>There are no categories present.</strong>
-		{% endif %}
+	{% if user.is_authenticated %}
+    	<div class="page-header">
 
-		<h2><u>Top 5 Pages</u></h2>
-		{% if pages %}
-			<table style = "width:75%" border="2">
-			<!-- Add the headers -->
-			<tr strong>
-				<td><strong>Title</strong></td>
-				<td><strong>URL</strong></td>
-				<td><strong>Views</strong></td>
-			</tr>
+                <h1>Rango says... hello {{ user.username }}!</h1>
+            {% else %}
+                <h1>Rango says... hello world!</h1>
+            {% endif %}
+		</div>
 
-			{% for page in pages%}
-				<tr>
-					<td> {{page.title}} </td>
-					<td><a href= {{page.url}}>{{page.url}}</a> </td>
-					<td> {{page.views}} </td>
-				</tr>	
-			{% endfor %}	
-		{% else %}
-			<strong>There are no categories present.</strong>
-		{% endif %}
-		</table>
+        <div class="row placeholders">
+	    <div class="panel panel-primary">
+	    <div class="panel-heading">
+        	<h3 class="panel-title">Categories</h3>
+	    </div>
+</div>
+
+
+    <div class="panel panel-primary">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Pages</h3>
+            </div>
+    </div>
+
+
+            <div class="col-xs-12 col-sm-6 placeholder">		
+				<h4><u>Categories</u></h4>
+				{% if categories %}
+				<ul class="list-group">
+					{% for category in categories %}
+						<li class="list-group-item"><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+				{% else %}
+					<strong>There are no categories present.</strong>
+				{% endif %}
+		</div>
+
+        <div class="col-xs-12 col-sm-6 placeholder">
+			<h4><u>Top 5 Pages</u></h2>
+			{% if pages %}
+				<table style = "width:75%" border="2">
+					<!-- Add the headers -->
+					<tr strong>
+						<td><strong>Title</strong></td>
+						<td><strong>URL</strong></td>
+						<td><strong>Views</strong></td>
+					</tr>
+
+					{% for page in pages%}
+					<tr>
+						<td> {{page.title}} </td>
+						<td><a href= {{page.url}}>{{page.url}}</a> </td>
+						<td> {{page.views}} </td>
+					</tr>	
+					{% endfor %}	
+			{% else %}
+				<strong>There are no categories present.</strong>
+			{% endif %}
+				</table>
 		<br/>
 		<br/>
 {% endblock %}			
